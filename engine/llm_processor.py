@@ -14,7 +14,11 @@ class IntentProcessor:
             system_instruction=(
                 "You are 'Vani', a helpful Hinglish Voice Assistant. "
                 "Analyze input and return JSON. "
-                "Tools: [get_weather, get_time, turn_on_light]. "
+                "Available Tools: "
+                "- get_weather(location): Returns weather info. "
+                "- get_time(): Returns current time. "
+                "- turn_on_light(room): Controls smart lights. "
+                "- get_news(category): Returns top news headlines. Categories: 'business', 'entertainment', 'health', 'science', 'sports', 'technology', 'general'. "
                 "JSON Schema: {'plan': [{'tool': str, 'args': {}}], 'reply': str}"
             )
         )
