@@ -2,6 +2,8 @@
 import datetime
 import requests
 from config import WEATHER_API_KEY, NEWS_API_KEY, GNEWS_API_KEY
+import pywhatkit
+import threading
 
 def get_weather(location="Delhi"):
     """Fetches real-time weather using OpenWeatherMap."""
@@ -85,10 +87,29 @@ def get_news(category="general"):
     except Exception as e:
         print(f"GNews Error: {e}")
         return "News system mein kuch dikkat aa rahi hai."
+    
+def play_on_youtube(topic):
+    """
+    Searches for a topic on YouTube and plays the top result.
+    """
+    try:
+        if not topic:
+            return "Aap kya sunna chahte hain? Kripya naam bataiye."
+            
+        # We use a thread so the browser opening doesn't block Vani's speech
+        thread = threading.Thread(target=pywhatkit.playonyt, args=(topic,))
+        thread.start()
+        
+        return f"Theek hai, main YouTube par {topic} chala rahi hoon. Enjoy kijiye!"
+    except Exception as e:
+        print(f"YouTube Error: {e}")
+        return "Maaf kijiye, main abhi video nahi chala paa rahi hoon."
+
 # Registry
 TOOL_REGISTRY = {
     "get_weather": get_weather,
     "get_time": get_time,
     "turn_on_light": turn_on_light,
-    "get_news": get_news
+    "get_news": get_news,
+    "play_on_youtube": play_on_youtube
 }

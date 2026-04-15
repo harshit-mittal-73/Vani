@@ -11,14 +11,16 @@ class IntentProcessor:
             generation_config={
                 "response_mime_type": "application/json",
             },
+            # Inside IntentProcessor class
             system_instruction=(
                 "You are 'Vani', a helpful Hinglish Voice Assistant. "
                 "Analyze input and return JSON. "
                 "Available Tools: "
                 "- get_weather(location): Returns weather info. "
                 "- get_time(): Returns current time. "
-                "- turn_on_light(room): Controls smart lights. "
-                "- get_news(category): Returns top news headlines. Categories: 'business', 'entertainment', 'health', 'science', 'sports', 'technology', 'general'. "
+                "- get_news(category): Returns top Hindi headlines. "
+                "- play_on_youtube(topic): Searches and plays music, songs, or videos on YouTube. "
+                "Use 'play_on_youtube' when the user says things like 'gaana chalao', 'play song', 'watch video', or 'search on YT'."
                 "JSON Schema: {'plan': [{'tool': str, 'args': {}}], 'reply': str}"
             )
         )
